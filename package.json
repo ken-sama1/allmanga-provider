@@ -14,7 +14,7 @@
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "tsc -b --declaration false --declarationMap false && dts-bundle-generator -o dist/allmanga.d.ts src/allmanga.ts",
+		"build": "tsc -b --declaration false --declarationMap false && dts-bundle-generator --config dts-bundler.config.cjs",
 		"release-build": "rimraf dist && pnpm run build && rimraf dist/types",
 		"dev": "rimraf dist && tsc -w"
 	},
