@@ -1,6 +1,5 @@
 import type { Evaluate } from "./common.type";
-import type { Manga } from "./Manga";
-import type { PageInfo } from "./PageInfo";
+import type { SchemaModelMangasConnection } from "./schemas/SchemaModelMangasConnection";
 import type { SearchInput } from "./SearchInput";
 import type { ValidCountryOriginEnumType } from "./ValidCountryOriginEnumType";
 import type { ValidMangaFormatEnumType } from "./ValidMangaFormatEnumType";
@@ -15,14 +14,6 @@ export type MangasConnectionArguments = {
 	readonly countryOrigin: ValidCountryOriginEnumType;
 	readonly format: ValidMangaFormatEnumType;
 };
-
-/**
- *  Base schema model `MangasConnection`
- * */
-export interface SchemaModelMangasConnection {
-	readonly edges: Manga[];
-	readonly pageInfo: PageInfo;
-}
 
 /**
  *  Type copy of `SchemaModelMangasConnection`

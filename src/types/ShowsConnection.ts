@@ -1,9 +1,8 @@
-import type { PageInfo } from "./PageInfo";
-import type { Show } from "./Show";
 import type { SearchInput } from "./SearchInput";
 import type { ValidTranslationTypeEnumType } from "./ValidTranslationTypeEnumType";
 import type { ValidCountryOriginEnumType } from "./ValidCountryOriginEnumType";
 import type { Evaluate } from "./common.type";
+import type { SchemaModelShowsConnection } from "./schemas/SchemaModelShowsConnection.ts";
 
 export type ShowsConnectionArguments = {
 	readonly search: SearchInput;
@@ -13,14 +12,6 @@ export type ShowsConnectionArguments = {
 	readonly translationType: ValidTranslationTypeEnumType;
 	readonly countryOrigin: ValidCountryOriginEnumType;
 };
-
-/**
- *  Base schema model of `ShowsConnection`
- * */
-export interface SchemaModelShowsConnection {
-	readonly edges: Show[];
-	readonly pageInfo: PageInfo;
-}
 
 /**
  *  Type copy of `SchemaModelShowsConnection`

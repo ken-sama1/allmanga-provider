@@ -74,4 +74,4 @@ const allmanga: AllMangaSDK = {
 };
 
 export default allmanga;
-export type * from "./types/";
+export type * from "./types/schemas/";
