@@ -1,0 +1,46 @@
+{
+	"name": "allmanga-provider",
+	"version": "1.0.0",
+	"description": "Type-safe SDK provider for AllManga GraphQL API with projection-base type inference",
+	"main": "./dist/allmanga.js",
+	"types": "./dist/allmanga.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/allmanga.d.ts",
+			"import": "./dist/allmanga.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc -b --declaration false --declarationMap false && dts-bundle-generator -o dist/allmanga.d.ts src/allmanga.ts",
+		"release-build": "rimraf dist && pnpm run build && rimraf dist/types",
+		"dev": "rimraf dist && tsc -w"
+	},
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"allmanga",
+		"allmanga-provider",
+		"graphql",
+		"typescript",
+		"inference"
+	],
+	"author": "Ken-Sama1",
+	"license": "MIT",
+	"packageManager": "pnpm@11.2.2+sha512.36e6621fad506178936455e70247b8808ef4ec25797a9f437a93281a020484e2607f6a469a22e982987c3dbb8866e3071514ab10a4a1749e06edcd1ec118436f",
+	"devDependencies": {
+		"@types/node": "^25.6.0",
+		"dts-bundle-generator": "^9.5.1",
+		"rimraf": "^6.1.3",
+		"ts-node": "^10.9.2",
+		"typescript": "^6.0.3"
+	},
+	"dependencies": {
+		"axios": "^1.16.0",
+		"axios-cookiejar-support": "^7.0.0",
+		"tough-cookie": "^6.0.1"
+	}
+}
