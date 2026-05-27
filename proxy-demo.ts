@@ -50,7 +50,7 @@ const fetchPanel = async () => {
 	 * */
 	if (!isPictureUrls(provider?.pictureUrls)) return;
 
-	const stream = allmanga.utils.youtubeAnimeProxy(provider.pictureUrls, {
+	const stream = allmanga.proxy.youtubeAnime(provider.pictureUrls, {
 		// allow auto retry
 		autoRetry: true,
 		//max retry

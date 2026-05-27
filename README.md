@@ -292,7 +292,44 @@ Depending on the `status` different fields are guaranteed to be available at com
 
 ## Utility
 
-### 1. YoutubeAnime Proxy
+### Deobfuscate URL
+
+When you query anime episodes some source url are obfuscated
+`deobfuscateURL()` is the utility to decode them.
+
+```ts
+const episode = await allmanga.episode({
+  showId: "bNAbh8viz7n7dGtNM",
+  episodeString: "1",
+  translationType: "sub"
+}).get({
+    sourceUrls: 1,
+    show: {
+      name: 1,
+      aniListId: 1, 
+    }
+  } satisfies typeof allmanga.episode.projection);
+
+type SourceUrl = {
+  sourceUrl: string;
+  priority: number;
+  sourceName: string;
+}
+
+if (episode.status === "success") {
+  // initial value of episode.data.sourceUrls is unknown
+  const sourceUrls = episode.data?.sourceUrls as SourceUrl[];
+
+  sourceUrls.forEach(source => {
+    const deobfuscatedURL = allmanga.utils.deobfuscateURL(source.sourceUrl);
+    console.log(source.sourceName, deobfuscatedURL);
+  });
+}
+```
+
+## Proxy
+
+### YoutubeAnime Proxy
 
 `youtubeAnimeProxy()` is an `AsyncGenerator` pipeline
 designed to safely proxy and stream raw manga panel binaries from `YoutubeAnime`.
@@ -324,7 +361,7 @@ const fetchPanels = async () => {
   if(chapters.status !== "success" || !chapters.data.edges?.length) return;
 
   const panels = chapters.data.edges[0]?.pictureUrls as MangaPanel[];  
-  const stream = allmanga.utils.youtubeAnimeProxy(panels, {
+  const stream = allmanga.proxy.youtubeAnime(panels, {
     autoRetry: true,
   });
 

@@ -1,7 +1,7 @@
 import axios from "axios";
-import { allmangaHeaders } from "../../api/allmangaAPI.js";
-import type { Simplify } from "../../types/common.type.js";
-import { isMimeType } from "../utils/isMimeType.js";
+import { allmangaHeaders } from "../api/allmangaAPI.js";
+import type { Simplify } from "../types/common.type.js";
+import { isMimeType } from "./utils/isMimeType.js";
 
 const providers = {
 	1: "ytimgf",

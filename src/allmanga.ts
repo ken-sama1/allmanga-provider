@@ -17,12 +17,13 @@ import mangasWithIds, {
 } from "./core/mangasWithIds.js";
 import youtubeAnimeProxy, {
 	type YoutubeAnimeProxy,
-} from "./core/proxy/youtube-anime.proxy.js";
+} from "./proxy/youtube-anime.proxy.js";
 import show, { type ShowQueryExecutor } from "./core/show.js";
 import shows, { type ShowsQueryExecutor } from "./core/shows.js";
 import showsWithIds, {
 	type ShowsWithIdsQueryExecutor,
 } from "./core/showsWithIds.js";
+import deobfuscateURL from "./utils/deobfuscateURL.js";
 
 // allmangaAPI.interceptors.request.use(loggingRequestInterceptor);
 // allmangaAPI.interceptors.response.use(
@@ -30,12 +31,20 @@ import showsWithIds, {
 // 	loggingResponseInterceptor(true),
 // );
 
+type AllMangaSDKProxy = {
+	youtubeAnime: YoutubeAnimeProxy;
+};
+
 type AllMangaSDKUtils = {
-	youtubeAnimeProxy: YoutubeAnimeProxy;
+	deobfuscateURL: typeof deobfuscateURL;
 };
 
 const utils: AllMangaSDKUtils = {
-	youtubeAnimeProxy,
+	deobfuscateURL,
+};
+
+const proxy: AllMangaSDKProxy = {
+	youtubeAnime: youtubeAnimeProxy,
 };
 
 type AllMangaSDK = {
@@ -57,7 +66,8 @@ type AllMangaSDK = {
 	episode: EpisodeQueryExecutor;
 	/** Schema Model `EpisodeInfo`*/
 	episodeInfos: EpisodeInfosQueryExecutor;
-	utils: typeof utils;
+	utils: AllMangaSDKUtils;
+	proxy: AllMangaSDKProxy;
 };
 
 const allmanga: AllMangaSDK = {
@@ -71,6 +81,7 @@ const allmanga: AllMangaSDK = {
 	episode,
 	episodeInfos,
 	utils,
+	proxy,
 };
 
 export default allmanga;
